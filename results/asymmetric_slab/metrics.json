@@ -1,0 +1,79 @@
+{
+  "validated": true,
+  "neff_pinn": 1.839913529744853,
+  "neff_reference": 1.8399166067077972,
+  "beta_rad_per_um": 7.458398488112124,
+  "scores": {
+    "neff_relative_error": 1.6723382641351273e-06,
+    "e_relative_l2": 0.00028654753992790984,
+    "h_relative_l2": 0.00028333605713684633,
+    "heldout_pde_loss": 2.5156798417198915e-06,
+    "interface_loss": 0.0,
+    "boundary_loss": 6.105821666953901e-13,
+    "anchor_loss": 1.2951735188637837e-13,
+    "output_e_relative_l2": 0.00031251177686760287,
+    "output_h_relative_l2": 0.00030956977753458537
+  },
+  "thresholds": {
+    "neff_relative_error": 0.001,
+    "e_relative_l2": 0.01,
+    "h_relative_l2": 0.02,
+    "heldout_pde_loss": 1e-05,
+    "interface_loss": 1e-05,
+    "boundary_loss": 1e-05,
+    "anchor_loss": 1e-05,
+    "output_e_relative_l2": 0.02,
+    "output_h_relative_l2": 0.02
+  },
+  "loss_terms": {
+    "pde": 2.5156798417198915e-06,
+    "interface": 0.0,
+    "boundary": 6.105821666953901e-13,
+    "anchor": 1.2951735188637837e-13
+  },
+  "analytic_transfer_agreement": null,
+  "power_w_per_m_y": 1.2780724811618436e-09,
+  "power_relative_drift": 4.854071021471362e-16,
+  "gaussian_l2_retained_fraction": null,
+  "launch_modal_coefficient": 1.0,
+  "runtime": {
+    "python": "3.10.21",
+    "torch": "2.3.1",
+    "numpy": "1.21.5",
+    "scipy": "1.7.3",
+    "device": "cpu",
+    "threads": 1
+  },
+  "training": {
+    "config": "configs/asymmetric_slab.json",
+    "output": "runs/asymmetric_slab",
+    "adam_steps": 1500,
+    "lbfgs_steps": 400,
+    "samples": 64,
+    "width": 32,
+    "seed": 7,
+    "threads": 1,
+    "device": "cpu",
+    "allow_unvalidated": false
+  },
+  "geometry": {
+    "wavelength_um": 1.55,
+    "boundaries_um": [
+      -2.0,
+      -0.3,
+      0.3,
+      2.0
+    ],
+    "indices": [
+      1.44,
+      2.0,
+      1.5
+    ],
+    "anchor_um": 0.0,
+    "length_um": 10.0,
+    "electric_amplitude_v_m": 1.0,
+    "launch": "mode",
+    "gaussian_waist_um": 0.5
+  },
+  "scope": "1D transverse, y/z invariant, lossless isotropic dielectric TE fundamental; single-mode propagation"
+}
