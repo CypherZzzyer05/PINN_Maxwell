@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pinn-maxwell"
+version = "0.1.0"
+description = "Interface-aware Maxwell PINN for dielectric slab waveguide optics"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.0", "numpy>=1.21", "scipy>=1.7", "matplotlib>=3.5"]
+
+[project.scripts]
+pinn-maxwell = "pinn_maxwell.demo:main"
+
+[tool.setuptools.packages.find]
+include = ["pinn_maxwell*"]

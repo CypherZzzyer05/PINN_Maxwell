@@ -1,0 +1,10 @@
+{
+  "wavelength_um": 1.55,
+  "boundaries_um": [-2.0, -0.25, 0.25, 2.0],
+  "indices": [1.45, 2.0, 1.45],
+  "anchor_um": 0.0,
+  "length_um": 10.0,
+  "electric_amplitude_v_m": 1.0,
+  "launch": "mode",
+  "gaussian_waist_um": 0.5
+}
