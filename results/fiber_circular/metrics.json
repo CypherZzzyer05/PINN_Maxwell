@@ -1,0 +1,125 @@
+{
+  "validated": true,
+  "neff_pinn": 1.5125926885441459,
+  "neff_reference": 1.5125510199581176,
+  "beta_rad_per_um": 6.131548488005062,
+  "scores": {
+    "neff_relative_error": 2.7548549092532406e-05,
+    "e_relative_l2": 0.0010092396706791306,
+    "h_relative_l2": 0.0008611223440649533,
+    "output_e_relative_l2": 0.001967826909659399,
+    "output_h_relative_l2": 0.0018960938186443881
+  },
+  "thresholds": {
+    "neff_relative_error": 0.0001,
+    "e_relative_l2": 0.02,
+    "h_relative_l2": 0.02,
+    "output_e_relative_l2": 0.02,
+    "output_h_relative_l2": 0.02
+  },
+  "loss_terms": {
+    "pde": 7.392175637504182e-08,
+    "interface": 8.821097667689439e-12,
+    "boundary": 1.4588554635483671e-12
+  },
+  "interfaces": [
+    {
+      "radius_um": 0.75,
+      "inner_index": 1.6,
+      "outer_index": 1.45,
+      "e_tangential_jump_relative": 1.096497537378496e-05,
+      "h_tangential_jump_relative": 8.163137531115504e-06,
+      "d_normal_jump_relative": 4.26501136656669e-06,
+      "b_normal_jump_relative": 1.0255993893785324e-05,
+      "e_inner_reference_error": 0.0009926966541810515,
+      "e_outer_reference_error": 0.0009946144473323205,
+      "h_inner_reference_error": 0.0009912182464573266,
+      "h_outer_reference_error": 0.000992461725752501,
+      "e_normal_outer_inner_magnitude_ratio": 1.2176032905948473,
+      "e_normal_expected_ratio": 1.2175980975029728,
+      "inner_e_magnitude_v_m": 0.48475620939238,
+      "outer_e_magnitude_v_m": 0.5340839627437679,
+      "inner_h_magnitude_a_m": 0.0020487079018194753,
+      "outer_h_magnitude_a_m": 0.002048700211904345
+    },
+    {
+      "radius_um": 1.5,
+      "inner_index": 1.45,
+      "outer_index": 1.44,
+      "e_tangential_jump_relative": 2.3103565353539725e-05,
+      "h_tangential_jump_relative": 5.118002236817049e-06,
+      "d_normal_jump_relative": 5.251535473799206e-06,
+      "b_normal_jump_relative": 2.3795171180143694e-05,
+      "e_inner_reference_error": 0.0032228714279366934,
+      "e_outer_reference_error": 0.003220643033881307,
+      "h_inner_reference_error": 0.003105249342976556,
+      "h_outer_reference_error": 0.0030938623448772016,
+      "e_normal_outer_inner_magnitude_ratio": 1.0139317894987707,
+      "e_normal_expected_ratio": 1.0139371141975309,
+      "inner_e_magnitude_v_m": 0.10103160340697696,
+      "outer_e_magnitude_v_m": 0.10175924879937558,
+      "inner_h_magnitude_a_m": 0.0003880368703566841,
+      "outer_h_magnitude_a_m": 0.0003880313338246018
+    }
+  ],
+  "physics_thresholds": {
+    "pde_loss": 1e-05,
+    "interface_boundary_loss": 1e-07,
+    "maxwell_relative": 0.01,
+    "interface_jump_relative": 0.002,
+    "interface_reference_relative": 0.02
+  },
+  "maxwell_cartesian": {
+    "curl_e_relative": 0.00034861951648292516,
+    "curl_h_relative": 0.00022658817565724895,
+    "div_d_relative": 0.0002617276862333638,
+    "div_b_relative": 0.0002703264115996132
+  },
+  "reference_maxwell_cartesian": {
+    "curl_e_relative": 6.155661962168107e-10,
+    "curl_h_relative": 6.172700838147462e-10,
+    "div_d_relative": 1.3243908189814239e-10,
+    "div_b_relative": 1.2595891231300014e-10
+  },
+  "axis_circularity_s3_s0": 1.0,
+  "power_within_radius_w": 2.7138835300740752e-15,
+  "geometry": {
+    "wavelength_um": 1.55,
+    "interface_radii_um": [
+      0.75,
+      1.5
+    ],
+    "indices": [
+      1.6,
+      1.45,
+      1.44
+    ],
+    "radius_um": 4.0,
+    "length_um": 10.0,
+    "electric_amplitude_v_m": 1.0,
+    "handedness": 1
+  },
+  "training": {
+    "config": "configs/fiber_circular.json",
+    "output": "runs/fiber_circular",
+    "adam_steps": 2500,
+    "lbfgs_steps": 1200,
+    "samples": 96,
+    "width": 32,
+    "seed": 11,
+    "threads": 1,
+    "device": "cpu",
+    "grid": 121,
+    "checkpoint": null,
+    "publish": "results/fiber_circular",
+    "allow_unvalidated": false
+  },
+  "runtime": {
+    "python": "3.10.21",
+    "torch": "2.3.1",
+    "scipy": "1.7.3",
+    "numpy": "1.21.5",
+    "device": "cpu"
+  },
+  "scope": "Full-vector core-guided m=+/-1 hybrid mode; radial isotropic layers, invariant along z; infinite outer cladding"
+}

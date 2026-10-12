@@ -2,5 +2,6 @@
 
 from .geometry import Waveguide
 from .model import MaxwellTEPINN
+from .fiber import FiberGeometry, FiberPINN
 
-__all__ = ["Waveguide", "MaxwellTEPINN"]
+__all__ = ["Waveguide", "MaxwellTEPINN", "FiberGeometry", "FiberPINN"]

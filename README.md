@@ -1,10 +1,52 @@
 # PINN_Maxwell
 
-用于波导光学的麦克斯韦物理神经网络原型。第一版求解**无损、各向同性、多层平板波导的 TE 基模**，输出有效折射率、传播后的复数 E/H 场和 Poynting 功率流。
+用于波导光学的麦克斯韦物理神经网络。包含多层平板波导 TE 基模，以及**圆偏振激励的全矢量同轴分层介质光纤**；输出有效折射率、复数 E/H、材料界面两侧场和 Poynting 功率流。
 
 [中文论文调研与方案报告](docs/literature_report_zh.md) · [验证结果](docs/validation_results.md) · [文献 BibTeX](docs/references.bib)
 
-## 运行
+## 圆柱介质光纤
+
+[模型、边界条件与范围](docs/cylindrical_fiber_zh.md) · [界面 E/H 实测结果](docs/fiber_validation_zh.md)
+
+默认 λ=1.55 μm，圆柱计算半径 4 μm、长度 10 μm；芯层半径 0.75 μm、内包层外半径 1.5 μm，三层折射率为 1.60 / 1.45 / 1.44。材料沿径向分层，分界面是 `r=0.75` 与 `r=1.5 μm` 的两个圆柱面，沿 z 不变。外包层使用精确衰减导模边界；未采用金属壁。
+
+```powershell
+python -m pip install -e .
+python -m pinn_maxwell.fiber_demo --output runs/fiber_circular --publish results/fiber_circular
+python -m unittest discover -s tests -v
+```
+
+也可使用 `pinn-maxwell-fiber`。训练为每个有限径向层的四状态 MLP，加上可训练 neff；全矢量 Maxwell 一阶残差、轴心正则性和界面约束决定解，外层 K1 尾场是开放边界的精确延拓。Bessel 参考仅用于验证。
+
+使用仓库已保存的权重直接生成完整界面数组：
+
+```powershell
+python -m pinn_maxwell.fiber_demo --checkpoint results/fiber_circular/model.pt --adam-steps 0 --lbfgs-steps 0 --output runs/fiber_saved
+```
+
+圆偏振激励是两组正交简并模式的等幅 π/2 相差叠加。保留 Ex/Ey/Ez、Hx/Hy/Hz；轴心 Ey=i Ex，局部偏振在界面附近可能呈椭圆，由 Stokes 图检查。`handedness=-1` 切换相反旋向。当前为直光纤导模激励，不包含端面自由空间耦合或纵向材料突变的反射。
+
+| 输出文件 | 内容 |
+| --- | --- |
+| `interface_1.csv`、`interface_2.csv` | z=0 与 z=L 的 129 个角度；界面内外两侧六个复数 E/H 分量、模长；含 Cartesian 和 r/φ/z 坐标分量 |
+| `interface_1.npz`、`interface_2.npz` | 整个分界面 `[z, phi, component]` 的复场、位置、内外侧数据 |
+| `interface_1.png`、`interface_2.png` | 展开的圆柱分界面：E/H 模长与场分量相位分布 |
+| `cross_section.npz`、`cross_section.png` | 输入/输出横截面 E/H、场图、圆偏振度与纵向 Ez |
+| `metrics.json`、`history.json`、`model.pt` | 参考误差、界面条件、独立 Maxwell 检查、训练历史和可重载网络 |
+
+```python
+import numpy as np
+from pinn_maxwell import FiberPINN
+from pinn_maxwell.fiber_fields import fiber_fields
+model = FiberPINN.from_checkpoint('results/fiber_circular/model.pt')
+E, H = fiber_fields(model, x_um=0.75, y_um=0., z_um=10., layer=0)  # 界面芯层侧
+E2, H2 = fiber_fields(model, x_um=0.75, y_um=0., z_um=10., layer=1)  # 相同坐标包层侧
+data = np.load('runs/fiber_circular/interface_1.npz')
+```
+
+坐标为 μm，E 为 V/m，H 为 A/m。`electric_amplitude_v_m` 指轴心复 E 模长，各正交分量为其 1/√2；模长是复幅值范数。外侧计算圆柱 `r=4 μm` 为开放截断边界，物理外包层延伸到无穷远。每个配置重新训练；不声称任意器件泛化。验证未通过返回退出码 2，并禁止 `--publish`。
+
+## 平板波导运行
 
 Python >=3.10。CPU 即可；建议独立虚拟环境。
 
@@ -53,7 +95,7 @@ with torch.no_grad():
 
 配置长度单位 μm；`indices` 是从左至右的实折射率，`boundaries_um` 比它多一个元素。第一和最后介质为无限包层，最外侧坐标只是导出范围。`anchor_um` 指定 e=1 的归一化点；`electric_amplitude_v_m` 是模式锚点或输入高斯光峰值的 E 幅值。
 
-## 当前物理范围
+## 平板波导模型的范围
 
 传播沿 z，TE 电场沿 y，横截面在 x 变化，沿 y 不变。网络在内部层学习 e=Ey 与 q=e'/k0，界面约束 e/q 连续，外部使用精确指数衰减。传播重建 Hx 与 Hz，并保留相位；Hz 一般不为零。无节点约束只适用于基模。
 
@@ -61,10 +103,10 @@ with torch.no_grad():
 
 ## Git 工作方式
 
-当前方向在 `codex/maxwell-pinn-prototype` 分支和独立 worktree 开发。下一物理方向先创建新的 worktree；不覆盖其它光学项目。
+平板基线在 `codex/maxwell-pinn-prototype`；光纤方向在独立 worktree 的 `codex/cylindrical-circular-layers` 分支。下一物理方向先创建新的 worktree。
 
 ```powershell
-git worktree add -b codex/vector-cross-section ../PINN_Maxwell-vector codex/maxwell-pinn-prototype
+git worktree add -b codex/fiber-axial-scattering ../PINN_Maxwell-axial codex/cylindrical-circular-layers
 ```
 
 后续全矢量、传播散射及条件神经算子方向的验收标准见调研报告。
