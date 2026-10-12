@@ -1,0 +1,9 @@
+{
+  "wavelength_um": 1.55,
+  "interface_radii_um": [0.75, 1.5],
+  "indices": [1.6, 1.45, 1.44],
+  "radius_um": 4.0,
+  "length_um": 10.0,
+  "electric_amplitude_v_m": 1.0,
+  "handedness": 1
+}
