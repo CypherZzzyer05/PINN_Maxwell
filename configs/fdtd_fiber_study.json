@@ -1,0 +1,16 @@
+{
+  "geometry": "configs/fiber_circular.json",
+  "checkpoint": "results/fiber_circular/model.pt",
+  "mesh_levels_nm": [80, 60, 40, 30, 25],
+  "axial_mesh_aspect": 1.5,
+  "outer_mesh_nm": 120,
+  "transverse_span_um": 14,
+  "axial_padding_um": 3,
+  "source_plane_um": -1,
+  "monitor_planes_um": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "time_limit_fs": 600,
+  "shutoff_threshold": 1e-7,
+  "threads": 8,
+  "output": "runs/fdtd",
+  "backend": "Ansys Lumerical 2024 R1 real 3D FDTD"
+}
