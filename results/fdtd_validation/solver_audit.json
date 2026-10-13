@@ -1,0 +1,97 @@
+[
+  {
+    "mesh_nm": 80,
+    "solver_version": "8.31.3633",
+    "status": 2.0,
+    "actual_wavelength_um": 1.55,
+    "grid_shape": [
+      138,
+      138,
+      135
+    ],
+    "source_to_lower_pml_um": 0.5671641791044788,
+    "output_to_upper_pml_um": 1.5671641791044681,
+    "source_window_to_side_pml_um": 0.5658536585365876,
+    "fsp_sha256": "323b73c412cc85614c6f3308bc2ca05c240fb0d13187d392916c961754732f62",
+    "initialization_time": 1.865117,
+    "simulation_run_time": 13.0851014,
+    "total_solver_speed": 308.6090527353498,
+    "total_threads": 8.0
+  },
+  {
+    "mesh_nm": 60,
+    "solver_version": "8.31.3633",
+    "status": 2.0,
+    "actual_wavelength_um": 1.55,
+    "grid_shape": [
+      155,
+      155,
+      179
+    ],
+    "source_to_lower_pml_um": 0.9213483146067436,
+    "output_to_upper_pml_um": 1.9213483146067247,
+    "source_window_to_side_pml_um": 0.5658536585365876,
+    "fsp_sha256": "0f4e98302ccd4e653c0bb0a7e110c23725f3d4bcd1bf2e1117e4bfaba668e3d5",
+    "initialization_time": 2.8990724,
+    "simulation_run_time": 25.1446692,
+    "total_solver_speed": 307.9858883170354,
+    "total_threads": 8.0
+  },
+  {
+    "mesh_nm": 40,
+    "solver_version": "8.31.3633",
+    "status": 2.0,
+    "actual_wavelength_um": 1.55,
+    "grid_shape": [
+      192,
+      192,
+      268
+    ],
+    "source_to_lower_pml_um": 1.280898876404494,
+    "output_to_upper_pml_um": 2.2808988764045086,
+    "source_window_to_side_pml_um": 0.5658536585365876,
+    "fsp_sha256": "bdb2596c860c2d3a88c01f73bcf0386015a25911df0ea090ef694373b582c842",
+    "initialization_time": 6.131678,
+    "simulation_run_time": 82.3994154,
+    "total_solver_speed": 288.13133272545036,
+    "total_threads": 8.0
+  },
+  {
+    "mesh_nm": 30,
+    "solver_version": "8.31.3633",
+    "status": 2.0,
+    "actual_wavelength_um": 1.55,
+    "grid_shape": [
+      229,
+      229,
+      357
+    ],
+    "source_to_lower_pml_um": 1.4606741573033717,
+    "output_to_upper_pml_um": 2.4606741573034387,
+    "source_window_to_side_pml_um": 0.5658536585365876,
+    "fsp_sha256": "bc6cfcedd5fc16dca3cc3c0ae7727213af3a5725ec3640096956c967e68e1894",
+    "initialization_time": 10.9245964,
+    "simulation_run_time": 191.1701112,
+    "total_solver_speed": 292.8550182273472,
+    "total_threads": 8.0
+  },
+  {
+    "mesh_nm": 25,
+    "solver_version": "8.31.3633",
+    "status": 2.0,
+    "actual_wavelength_um": 1.55,
+    "grid_shape": [
+      257,
+      257,
+      428
+    ],
+    "source_to_lower_pml_um": 1.5503512880562047,
+    "output_to_upper_pml_um": 2.550351288056147,
+    "source_window_to_side_pml_um": 0.5658536585365876,
+    "fsp_sha256": "45343f286052f53d6126000f1119c04f69501e9c08d625368106cf7c5ae3a925",
+    "initialization_time": 17.0434248,
+    "simulation_run_time": 323.0926587,
+    "total_solver_speed": 297.9978671982125,
+    "total_threads": 8.0
+  }
+]

@@ -1,0 +1,25 @@
+Ansys Lumerical 2024 R1 FDTD Solver Version 8.31.3633 (Windows 64bit)
+Running 3D Simulation
+Starting meshing
+Simulation size in gridpoints: 215 x 215 x 291
+Completed meshing!
+Starting meshing
+Simulation size in gridpoints: 215 x 215 x 291
+Completed meshing!
+Starting meshing
+Simulation size in gridpoints: 215 x 215 x 291
+Completed meshing!
+Starting to add sources to simulation
+Starting to add boundary conditions to simulation
+Starting to add monitors to Simulation
+Starting 7814 total iterations
+Early termination of simulation, the autoshutoff criteria are satisfied.
+Completed 1765 iterations, or 1.355307e-13s of Simulation Time
+Simulation completed successfully at: 周二 10月 13 11:16:17 2026
+Overall wall time measurements in seconds: 89.269
+    time to mesh and initialize: 6.13168
+    time to run FDTD simulation: 82.3994
+    time to checkpoint simulation: 0
+    time to finalize data and save to files: 0.107152
+    FDTD solver speed on process 0: 288.131 Mnodes/s
+    total FDTD solver speed on 1 processes: 288.131 Mnodes/s

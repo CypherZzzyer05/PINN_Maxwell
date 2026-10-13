@@ -14,4 +14,4 @@ pinn-maxwell = "pinn_maxwell.demo:main"
 pinn-maxwell-fiber = "pinn_maxwell.fiber_demo:main"
 
 [tool.setuptools.packages.find]
-include = ["pinn_maxwell*"]
+include = ["pinn_maxwell*", "fdtd_validation*"]

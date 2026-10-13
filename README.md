@@ -46,6 +46,12 @@ data = np.load('runs/fiber_circular/interface_1.npz')
 
 坐标为 μm，E 为 V/m，H 为 A/m。`electric_amplitude_v_m` 指轴心复 E 模长，各正交分量为其 1/√2；模长是复幅值范数。外侧计算圆柱 `r=4 μm` 为开放截断边界，物理外包层延伸到无穷远。每个配置重新训练；不声称任意器件泛化。验证未通过返回退出码 2，并禁止 `--publish`。
 
+## 真实 FDTD 独立验证
+
+已使用 Ansys Lumerical 2024 R1 对同一圆偏振光纤完成 80/60/40/30/25 nm 五档三维 FDTD。25 nm 下，输入全截面 E/H 差异为 0.80675%/0.51464%，界面两侧 E 为 0.23%–0.34%、H 为 0.57%–0.73%。传播 10 μm 后原始复场差异约 12.47%，主要受 FDTD 网格相位色散影响；相位对齐后的场形指标需单独解读。有效折射率外推偏差估计 +0.00158%，拟合敏感度约 0.00249%，尚不能精确确定该量级的网络偏差。
+
+[完整 FDTD 报告与复现步骤](docs/fdtd_validation_zh.md)、[指标及偏差](results/fdtd_validation/comparison.json)、[两条界面 CSV](results/fdtd_validation/)、[实际求解器审计](results/fdtd_validation/solver_audit.json)。验证代码在 `fdtd_validation/`；独立分支 `codex/fdtd-fiber-validation`。运行商业 FDTD 需要本机 Lumerical 与许可证，分析工具和普通物理测试可独立安装。
+
 ## 平板波导运行
 
 Python >=3.10。CPU 即可；建议独立虚拟环境。
